@@ -27,7 +27,7 @@ app.get("/", async (req, res) => {
 // endpoint to retrieve leads
 app.get('/api/leads', async (req, res) => {
   const leads = await prisma.leads.findMany();
-  res.json(leads);
+  return res.json(leads);
 });
 
 // endpoint to validate email addresses
@@ -41,7 +41,7 @@ app.post('/api/validate-email', async (req, res) => {
     data: { isValidEmail },
   });
 
-  res.json(lead);
+  return res.json(lead);
 });
 
 // endpoint to update lead status
@@ -55,7 +55,7 @@ app.put('/api/leads/:id', async (req, res) => {
     data: { isApproved, comment, personalizationLine },
   });
 
-  res.json(lead);
+  return res.json(lead);
 });
 
 app.listen(Number(port), "0.0.0.0", () => {
