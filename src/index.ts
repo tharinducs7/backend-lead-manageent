@@ -10,67 +10,54 @@ app.use(express.json());
 app.use(express.raw({ type: "application/vnd.custom-type" }));
 app.use(express.text({ type: "text/html" }));
 
-app.get("/todos", async (req, res) => {
-  const todos = await prisma.todo.findMany({
-    orderBy: { createdAt: "desc" },
-  });
-
-  res.json(todos);
-});
-
-app.post("/todos", async (req, res) => {
-  const todo = await prisma.todo.create({
-    data: {
-      completed: false,
-      createdAt: new Date(),
-      text: req.body.text ?? "Empty todo",
-    },
-  });
-
-  return res.json(todo);
-});
-
-app.get("/todos/:id", async (req, res) => {
-  const id = req.params.id;
-  const todo = await prisma.todo.findUnique({
-    where: { id },
-  });
-
-  return res.json(todo);
-});
-
-app.put("/todos/:id", async (req, res) => {
-  const id = req.params.id;
-  const todo = await prisma.todo.update({
-    where: { id },
-    data: req.body,
-  });
-
-  return res.json(todo);
-});
-
-app.delete("/todos/:id", async (req, res) => {
-  const id = req.params.id;
-  await prisma.todo.delete({
-    where: { id },
-  });
-
-  return res.send({ status: "ok" });
-});
-
 app.get("/", async (req, res) => {
   res.send(
     `
-  <h1>Todo REST API</h1>
+  <h1>REST API</h1>
   <h2>Available Routes</h2>
+  <h4>Service Status: 🟢 </h4>
   <pre>
-    GET, POST /todos
-    GET, PUT, DELETE /todos/:id
+    GET, POST /leads
+    GET, PUT, DELETE /leads/:id
   </pre>
   `.trim(),
   );
 });
 
+// endpoint to retrieve leads
+app.get('/api/leads', async (req, res) => {
+  const leads = await prisma.leads.findMany();
+  res.json(leads);
+});
+
+// endpoint to validate email addresses
+app.post('/api/validate-email', async (req, res) => {
+  const { email } = req.body;
+
+  // call the validation service and store the result in the database
+  const isValidEmail = true; // replace with actual validation code
+  const lead = await prisma.leads.update({
+    where: { email },
+    data: { isValidEmail },
+  });
+
+  res.json(lead);
+});
+
+// endpoint to update lead status
+app.put('/api/leads/:id', async (req, res) => {
+  const { id } = req.params;
+  const { isApproved, comment, personalizationLine } = req.body;
+
+  // update the lead in the database
+  const lead = await prisma.leads.update({
+    where: { id: Number(id) },
+    data: { isApproved, comment, personalizationLine },
+  });
+
+  res.json(lead);
+});
+
 app.listen(Number(port), "0.0.0.0", () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });

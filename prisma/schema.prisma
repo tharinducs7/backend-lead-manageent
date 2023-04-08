@@ -10,9 +10,23 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Todo {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  text      String
-  completed Boolean
+model Leads {
+  id                  Int      @id @default(autoincrement())
+  name                String?
+  email               String   @unique
+  phone               String?
+  image               String?
+  company             String?
+  country_code        String?
+  jobTitle            String?
+  website             String?
+  personalizationLine String?
+  isValidEmail        Boolean?
+  isApproved          Boolean?
+  comment             String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@map("leads")
 }
+
