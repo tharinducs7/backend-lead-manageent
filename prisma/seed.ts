@@ -3,7 +3,7 @@ import { PrismaClient, Prisma } from '@prisma/client'
 const prisma = new PrismaClient()
 
 const leadsData: Prisma.LeadsCreateInput[] = [
-    {
+  {
     name: 'Emma Wilson',
     email: 'emma.wilson@example.com',
     phone: '555-7890',
@@ -16,6 +16,7 @@ const leadsData: Prisma.LeadsCreateInput[] = [
     isValidEmail: true,
     isApproved: true,
     comment: null,
+    industry: 'Marketing'
   },
   {
     name: 'Adam Johnson',
@@ -30,12 +31,13 @@ const leadsData: Prisma.LeadsCreateInput[] = [
     isValidEmail: true,
     isApproved: true,
     comment: null,
+    industry: 'Consulting'
   },
   {
-    name: 'Sophie Lee',
-    email: 'sophie.lee@example.com',
+    name: 'Sophie Kalm',
+    email: 'sophie.kalm@example.com',
     phone: '555-4321',
-    company: 'Lee Technologies',
+    company: 'Kalm Technologies',
     jobTitle: 'IT Director',
     image: 'https://randomuser.me/api/portraits/women/45.jpg',
     country_code: 'kr',
@@ -44,6 +46,7 @@ const leadsData: Prisma.LeadsCreateInput[] = [
     isValidEmail: true,
     isApproved: true,
     comment: null,
+    industry: 'Technology'
   },
   {
     name: 'Benjamin Chen',
@@ -58,6 +61,7 @@ const leadsData: Prisma.LeadsCreateInput[] = [
     isValidEmail: true,
     isApproved: true,
     comment: null,
+    industry: 'Business'
   },
   {
     name: 'Amanda Rodriguez',
@@ -72,6 +76,7 @@ const leadsData: Prisma.LeadsCreateInput[] = [
     isValidEmail: true,
     isApproved: true,
     comment: null,
+    industry: 'Finance'
   },
   {
     name: 'Jack Smith',
@@ -86,7 +91,98 @@ const leadsData: Prisma.LeadsCreateInput[] = [
     isValidEmail: true,
     isApproved: true,
     comment: null,
+    industry: 'Sales'
   },
+  {
+    name: 'Isabella Perez',
+    email: 'isabella.perez@example.com',
+    phone: '555-9876',
+    company: 'Perez Marketing',
+    jobTitle: 'Marketing Coordinator',
+    image: 'https://randomuser.me/api/portraits/women/74.jpg',
+    country_code: 'mx',
+    website: 'https://www.perezmarketing.com',
+    personalizationLine: 'Hi Isabella',
+    isValidEmail: true,
+    isApproved: true,
+    comment: null,
+    industry: 'Marketing'
+  },
+  {
+    name: 'Ethan Taylor',
+    email: 'ethan.taylor@example.com',
+    phone: '555-2345',
+    company: 'Taylor Industries',
+    jobTitle: 'Production Manager',
+    image: 'https://randomuser.me/api/portraits/men/79.jpg',
+    country_code: 'ca',
+    website: 'https://www.taylorindustries.com',
+    personalizationLine: 'Hi Ethan',
+    isValidEmail: true,
+    isApproved: true,
+    comment: null,
+    industry: 'Manufacturing'
+  },
+  {
+    name: 'Chloe Lee',
+    email: 'chloe.lee@example.com',
+    phone: '555-6789',
+    company: 'Lee Architecture',
+    jobTitle: 'Architect',
+    image: 'https://randomuser.me/api/portraits/women/57.jpg',
+    country_code: 'au',
+    website: 'https://www.leearchitecture.com',
+    personalizationLine: 'Hi Chloe',
+    isValidEmail: true,
+    isApproved: true,
+    comment: null,
+    industry: 'Architecture'
+  },
+  {
+    name: 'Noah Kim',
+    email: 'noah.kim@example.com',
+    phone: '555-3456',
+    company: 'Kim & Kim Law Firm',
+    jobTitle: 'Attorney',
+    image: 'https://randomuser.me/api/portraits/men/2.jpg',
+    country_code: 'kr',
+    website: 'https://www.kimandkimlaw.com',
+    personalizationLine: 'Hi Noah',
+    isValidEmail: true,
+    isApproved: true,
+    comment: null,
+    industry: 'Law'
+  },
+  {
+    name: 'Aria Patel',
+    email: 'aria.patel@example.com',
+    phone: '555-9012',
+    company: 'Patel Consulting',
+    jobTitle: 'Business Analyst',
+    image: 'https://randomuser.me/api/portraits/women/42.jpg',
+    country_code: 'in',
+    website: 'https://www.patelconsulting.com',
+    personalizationLine: 'Hi Aria',
+    isValidEmail: true,
+    isApproved: true,
+    comment: null,
+    industry: 'Consulting'
+  },
+  {
+    name: 'William Wong',
+    email: 'william.wong@example.com',
+    phone: '555-2468',
+    company: 'Wong Financial Group',
+    jobTitle: 'Financial Advisor',
+    image: 'https://randomuser.me/api/portraits/men/8.jpg',
+    country_code: 'hk',
+    website: 'https://www.wongfinancialgroup.com',
+    personalizationLine: 'Hi William',
+    isValidEmail: true,
+    isApproved: true,
+    comment: null,
+    industry: 'Finance'
+  }
 ]
 
 async function main() {
