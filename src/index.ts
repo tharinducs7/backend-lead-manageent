@@ -65,6 +65,20 @@ app.put('/api/leads/:id', async (req, res) => {
   return res.json(lead);
 });
 
+app.get('/api/leads/:id', async (req, res) => {
+  const leadId = parseInt(req.params.id);
+  const lead = await prisma.leads.findUnique({
+    where: {
+      id: leadId,
+    },
+  });
+  if (lead) {
+    return res.json(lead);
+  } else {
+    return res.status(404).json({ error: 'Lead not found' });
+  }
+});
+
 app.listen(Number(port), "0.0.0.0", () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
